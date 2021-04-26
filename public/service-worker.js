@@ -34,20 +34,20 @@ self.addEventListener("activate", function (evt) {
   self.clients.claim();
 });
 self.addEventListener("fetch", function (evt) {
-  if (evt.req.url.includes("/api/")) {
+  if (evt.request.url.includes("/api/")) {
     evt.respondWith(
       caches
         .open(DATA_CACHE_NAME)
         .then((cache) => {
-          return fetch(evt.req)
+          return fetch(evt.request)
             .then((res) => {
               if (res.status === 200) {
-                cache.put(evt.req.url, res.clone());
+                cache.put(evt.request.url, res.clone());
               }
               return res;
             })
             .catch((err) => {
-              return cache.match(evt.req);
+              return cache.match(evt.request);
             });
         })
         .catch((err) => console.log(err))
@@ -56,8 +56,8 @@ self.addEventListener("fetch", function (evt) {
   }
   evt.respondWith(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.match(evt.req).then((res) => {
-        return res || fetch(evt.req);
+      return cache.match(evt.request).then((res) => {
+        return res || fetch(evt.request);
       });
     })
   );
