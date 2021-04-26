@@ -4,7 +4,7 @@ const FILES_TO_CACHE = [
   "/styles.css",
   "/index.js",
   "/manifest.webmanifest",
-  "/db.js",
+  "/database.js",
 ];
 
 const DATA_CACHE_NAME = "data-cache-v1";
