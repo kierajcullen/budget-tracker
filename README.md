@@ -4,4 +4,4 @@ This application utilizes several libraries to create a responsive budget tracke
 
 ## Deployed Application
 
-![github](img/github.png)
+![](img/github.png)
